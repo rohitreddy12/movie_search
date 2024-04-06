@@ -4,8 +4,6 @@ function App(){
 
   const [search,setSearch]=useState("")
 
-  
-  // useEffect(() => {() => {}},[search])
 
   useEffect(() => {
     if(search.length>=3){
@@ -14,8 +12,6 @@ function App(){
       .then(data => console.log(data))
     } 
   },[search])
-
-  
 
 
   return(
@@ -32,8 +28,3 @@ function App(){
 export default App;
 
 
-/*onChange is an event that is used to recognise and identify the change.when used in inout it identifies 
-whenever a user enters a char*/
-// .target is used to identify the change and .value is used to get the changed value
-
-// useState and useEffect are ReactHooks
