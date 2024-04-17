@@ -33,12 +33,14 @@ const App:React.FC = () => {
 
   // console.log(typeof(imgDet))
 
+  const debouncedValue=useDebounce(search,700)
+
   useEffect(
     () => {
       if(search.length>=3){
-        apiCall(search)
+        apiCall(debouncedValue)
       }
-   },[search]
+   },[debouncedValue]
   )
 
   return(
