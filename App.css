@@ -1,0 +1,44 @@
+*{
+    background-color: rgba(123, 196, 227);
+    text-align: center;
+    
+  }
+  
+  .imgs{
+    background-color: #23297ae5;
+    border-radius: 4px;
+  }
+  
+  
+  h1{ 
+    font-size: 50px;
+    display: inline-block;
+    background-color: beige;
+    color: rgb(13, 71, 151);
+    text-align: center; 
+    margin: 10px;
+  }
+  
+  img{
+    height: 300px;
+    width: 250px;
+    margin: 10px 5px;
+    border: groove 3.3px grey;
+    border-radius: 10px;
+    
+    
+  }
+  
+  #searchbar{
+    width: 350px;
+    font-size: 20px;
+    height: 40px;
+    margin: 10px 400px 10px ;
+    background-color: aliceblue;
+    border: ridge 3px grey;
+    text-align: left;
+  }
+  
+  /* div .main{
+    border: solid 2px black;
+  } */
