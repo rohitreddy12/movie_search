@@ -1,95 +1,137 @@
 *{
-  background-color: black;
+  /* background-color: #000; */
+  margin: 0px;
+  padding: 0px;
   box-sizing: border-box;
+  /* display: flex; */
+  
 }
 
-.header1{
-  margin:10px;
+
+
+.mainimg{
+  background-color: white;
+  background-image: url("C:\New folder\movie_search\edited.png"); 
+  background-size: contain ;
+  background-position-x: 580px;
+  /* background-position-y: -30px; */
+  background-repeat: no-repeat;
+  height: 500px;
+  border-bottom: 1px dashed black;
 }
+
+.header2 div{ 
+  display: flex;
+  font-size:50px ;
+  margin-left: 40px;
+}
+
+#s2{
+  margin-bottom: 30px;
+}
+
+#se{
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.719);
+  font-family: "PlayFair Display";
+  font-style: italic;
+  
+}
+
+.line{
+  margin-left: 40px;
+  font-size: larger;
+  font-family: "PlayFair Display";
+  
+  
+}
+
 .header2{
-  text-align: center;
-  margin:5px;
-}
-
-.header2 h1{ 
-  font-size:80px ;
+  color: rgba(0, 0, 0, 0.719);
+  position:relative;
+  top: 10px;
+  font-family: "PlayFair Display";
+  font-style: normal;
+  margin-top: 80px;
 }
 
 #dot{
-  color: #eeb81a;
+  color: #9c5c07;
 }
 
-#s1{
-  color: #bd6800 ;
 
-}
-
-.header1 h1{
-  color: white;
+.header1 #ms1{
+  color: #9c5c07;
   text-align: center;
-  font-size: 60px;  
+  font-size: 65px;
+  font-family:"PlayFair Display";
+  font-style: italic;
+  text-shadow: 2px 2px 4px #000000;
 }
 
-#ms{
-  color: #f0bc11;
-}
+
 
 .search{
+  position: relative;
   display: flex;
-  margin: 30px 0px 40px;
-  top: 0px;
+  margin: 0px 0px 30px 20px;
+  top: 30px;
   flex-direction: row;
   align-items:center;
   justify-content: center;
+  position: relative;
+  right: 30px;
   
 }
 
 ::placeholder{
-  color: #000;
+  color:  #f9d251;
+  
 }
-.search div{
-  font-family: cursive;
+.search #st{
+  font-family: "PlayFair Display";
   font-size: 17px;
-  color: rgb(199, 193, 193);
+  color: #c38b15;
+  margin-left: 150px;
 }
 
-input{
-    width: 400px;
+.search input{
+    width: 300px;
     height: 40px;
-    background-color: #c4a060;
+    background-color: #f1e6bd;
     border-radius: 10px;
-    border: 2px solid #3c3c2e;
+    /* border: 2px solid #3c3c2e; */
+    border:2px solid grey;
+    margin-left: 5px;
+    font-family: "Lato";
+    
 }
 
-input:focus{
-  border: 1.5px solid #4b300f;
+.search input:focus{
+  border: 1.5px solid #080808;
   box-shadow: 10px 10px  15px #4b300f;
 }
 
-div .upper{
-  border-bottom: dashed 1px yellow;
-  margin: 0px 0px 0px 20px;
 
-}
 
 .imgbody{
+  background-color: #f2f2f2;
   padding: 5px 20px 0px;
-  margin: 0px 5px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-
+  padding: 5px;
+  /* justify-content: space-around; */
 }
 
+
 img{
-  width: 250px;
+  
   height: 250px;
-  margin-top: 2px;
-  margin-bottom: 20px;
-  border: 2px solid #c4a060;
-  border-top:1px solid transparent;
-  border-bottom: 1px solid transparent;
-  border-radius: 10px;
+  /* border: 1px solid #4d4444; */
+  border-radius: 4px;
+  padding-left: 15px;
+  margin: 2px 20px 20px;
+  width: 200px;
 }
 
 .pages{
@@ -97,23 +139,20 @@ img{
   justify-content: center;
 }
 
-button{
-  background-color: #c4a060;
-  border: 2px solid #4b300f;
-  color: #3c3c2e;
-  width: 100px;
-  height: 40px;
-  padding: 5px;
-  color: rgb(57, 54, 54);
-  margin: 2px;
+.pagination{
+  
+  display: flex;
+  justify-content: center;
+  margin:4px;
+  padding: 2px;
 }
 
-button:hover{
-  background-color: #f0bc11;
-  border: 2px solid #bd6800;
-  color: #000;
+.pagiantion #searchbox{
+  margin: 10px;
 }
 
-.numButtons button:active{
-  color: red;
-}
+
+
+
+
+
