@@ -2,9 +2,7 @@
   /* background-color: #000; */
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
-  /* display: flex; */
-  
+  box-sizing: border-box;  
 }
 
 
@@ -33,7 +31,7 @@
 #se{
   font-size: 30px;
   color: rgba(0, 0, 0, 0.719);
-  font-family: "PlayFair Display";
+  font-family: "Poppins";
   font-style: italic;
   
 }
@@ -41,7 +39,7 @@
 .line{
   margin-left: 40px;
   font-size: larger;
-  font-family: "PlayFair Display";
+  font-family: "Popppins";
   
   
 }
@@ -50,7 +48,7 @@
   color: rgba(0, 0, 0, 0.719);
   position:relative;
   top: 10px;
-  font-family: "PlayFair Display";
+  font-family: "Poppins";
   font-style: normal;
   margin-top: 80px;
 }
@@ -64,7 +62,7 @@
   color: #9c5c07;
   text-align: center;
   font-size: 65px;
-  font-family:"PlayFair Display";
+  font-family:"Poppins";
   font-style: italic;
   text-shadow: 2px 2px 4px #000000;
 }
@@ -89,7 +87,7 @@
   
 }
 .search #st{
-  font-family: "PlayFair Display";
+  font-family: "Poppins";
   font-size: 17px;
   color: #c38b15;
   margin-left: 150px;
@@ -103,16 +101,18 @@
     /* border: 2px solid #3c3c2e; */
     border:2px solid grey;
     margin-left: 5px;
-    font-family: "Lato";
+    font-family: "Poppins";
     
 }
 
 .search input:focus{
   border: 1.5px solid #080808;
-  box-shadow: 10px 10px  15px #4b300f;
+  box-shadow: 3px 3px  10px #4b300f;
 }
 
-
+button{
+  border: none;
+}
 
 .imgbody{
   background-color: #f2f2f2;
@@ -123,15 +123,23 @@
   /* justify-content: space-around; */
 }
 
+.favicon{
+  position: relative;
+  bottom: 20px;
+  left: 120px;
+}
+
+
 
 img{
   
   height: 250px;
   /* border: 1px solid #4d4444; */
-  border-radius: 4px;
-  padding-left: 15px;
+  border-radius: 5px ;
+  padding-left: 2px;
   margin: 2px 20px 20px;
   width: 200px;
+  position: relative;
 }
 
 .pages{

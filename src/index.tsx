@@ -18,6 +18,7 @@ root.render(
             <Route path='/' element={<App />}></Route>
             <Route path='movie-details/:movieId' element={<MovieDetails />}></Route>
             <Route path='/favourites' element={<Favourites />}></Route>
+            
           </Routes>
         </BrowserRouter>
 
