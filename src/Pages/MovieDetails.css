@@ -1,0 +1,63 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+.upperDet{
+    display: flex;
+    justify-content: space-evenly;    
+}
+
+#poster{
+    width: 362px;
+    height: 426px;
+}
+
+.upperdetails{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    justify-content: space-between;
+    border: 2px dashed yellow;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+div #title{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    text-align: center;
+    font-size: 35px;
+    margin: 5px 0px;
+}
+
+#subh{
+    font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+#plot{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 20px;
+    border-left: 3px solid yellow;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#plotline{
+    font-family: "Poppins",sans-serif;
+    font-weight: 400;
+    text-indent: 50px;
+}
+
+
+
+
+
