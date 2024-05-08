@@ -1,0 +1,33 @@
+.loginBox{
+    border-radius: 20px;
+}
+
+.loginBox input{
+    width: 220px;
+    
+    
+}
+
+.loginBox h1{
+    text-align: center;
+}
+
+.loginBox form{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginBox #submit{
+    width: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+
+}
+
+.loginBox{
+    width: 400px;
+    height: 450px;
+    border: 1px solid grey;
+}
