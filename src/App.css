@@ -5,31 +5,29 @@
   box-sizing: border-box;  
 }
 
-
-
 .mainimg{
   background-color: white;
-  background-image: url("C:\New folder\movie_search\edited.png"); 
-  background-size: contain ;
-  background-position-x: 580px;
+  /* background-image: url("C:\New folder\movie_search\edited.png");  */
+  background-image: url("C:\New folder\movie_search\1.jpg");
+  background-size: cover ;
+  /* background-position-x: 580px; */
   /* background-position-y: -30px; */
   background-repeat: no-repeat;
-  height: 500px;
+  height: 350px;
   border-bottom: 1px dashed black;
+  color: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .header2 div{ 
   display: flex;
-  font-size:50px ;
+  font-size:3.9vw ;
   margin-left: 40px;
 }
 
-#s2{
-  margin-bottom: 30px;
-}
-
 #se{
-  font-size: 30px;
+  font-size: 2.3vw;
   color: rgba(0, 0, 0, 0.719);
   font-family: "Poppins";
   font-style: italic;
@@ -38,19 +36,21 @@
 
 .line{
   margin-left: 40px;
-  font-size: larger;
-  font-family: "Popppins";
+  font-size: 1.7vw;
+  font-family: "Poppins";
+  margin-top: 5px;
   
   
 }
 
 .header2{
   color: rgba(0, 0, 0, 0.719);
-  position:relative;
-  top: 10px;
+  /* position:relative;
+  top: 10px; */
   font-family: "Poppins";
   font-style: normal;
-  margin-top: 80px;
+  margin-top: 40px;
+  margin-bottom: 5px;
 }
 
 #dot{
@@ -61,24 +61,21 @@
 .header1 #ms1{
   color: #9c5c07;
   text-align: center;
-  font-size: 65px;
+  font-size: 5vw;
   font-family:"Poppins";
   font-style: italic;
   text-shadow: 2px 2px 4px #000000;
 }
 
-
-
-.search {
+#searchbar{
   position: relative;
   margin: 5px;  
-  text-align: center
+  left: 26vw;
 }
 
 ::placeholder{
   color:  #0b0b0aa6;
   font-family: "Poppins";
-  margin-left: 5px;
 }
 
 
@@ -86,13 +83,13 @@
     width: 50%;
     height: 45px;
     background-color: #f1e6bd;
-    border-radius: 10px;
-    /* border: 2px solid #3c3c2e; */
+    border-radius: 25px;
     border:2px solid grey;
-    margin-left: 5px;
+    padding-left: 15px;
     font-family: "Poppins";
-    
 }
+    
+
 
 .search input:focus{
   border: 1.5px solid #080808;
@@ -110,7 +107,7 @@
   position: absolute;
   bottom: 3px;
   right: 318px;
-  font-size: 40px;
+  font-size: 3.1vw;
 
 }
 
@@ -119,18 +116,36 @@ button{
 }
 
 .imgbody{
-  background-color: #f2f2f2;
-  padding: 5px 20px 0px;
+  
+  /* padding: 5px 20px 0px; */
   display: flex;
   flex-wrap: wrap;
-  padding: 5px;
-  /* justify-content: space-around; */
+  row-gap: 10px;
+  /* padding: 5px; */
+  justify-content: space-around;
+  margin-top: 5px;
 }
 
-.favicon{
-  position: relative;
-  bottom: 20px;
-  left: 120px;
+
+
+.img{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+}
+
+.searchTitle{
+  background-color: #f2f2f2;
+  padding-left:10px;
+  padding-top: 10px;
+}
+
+.searchTitle p{
+  font-family: "Poppins",sans-serif;
+  font-size: 27px;
+  font-weight: 400;
 }
 
 
@@ -140,9 +155,9 @@ button{
   /* border: 1px solid #4d4444; */
   border-radius: 5px ;
   padding-left: 2px;
-  margin: 2px 20px 20px;
+  margin: 2px 20px 0px;
   width: 200px;
-  position: relative;
+  
 }
 
 .pages{
@@ -161,6 +176,20 @@ button{
 .pagiantion #searchbox{
   margin: 10px;
 }
+
+
+@media screen and (max-width: 440px) {
+  #line1 #line2{
+    display: none;
+  }
+  .header2{
+    font-size: 30px;
+  }
+  #searchbar{
+    width:200px;
+  }
+}
+
 
 
 
