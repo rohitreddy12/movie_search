@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter , Route , Routes} from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Favourites from './Pages/Favourites';
 import MovieDetails from './Pages/MovieDetails';
-import Login from './Components/Login';
+import Genres from './Pages/Genres';
 
 
 const root = ReactDOM.createRoot(
@@ -15,14 +15,13 @@ const root = ReactDOM.createRoot(
 root.render(
 
   <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<App />}></Route>
-            <Route path='/:movieId' element={<MovieDetails />}></Route>
-            <Route path='/favourites' element={<Favourites />}></Route>
-            
-            
-          </Routes>
-        </BrowserRouter>
+    <Routes>
+      <Route path='/' element={<App />}></Route>
+      <Route path='movie_details/:movieId' element={<MovieDetails />}></Route>
+      <Route path='/favourites' element={<Favourites />}></Route>
+      <Route path='/genres' element={<Genres />}></Route>
+    </Routes>
+  </BrowserRouter>
 
 
 
