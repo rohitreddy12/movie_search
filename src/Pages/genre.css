@@ -1,0 +1,35 @@
+.genreButtons{
+    width: 250px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    border-right:1px dashed black;
+    border-bottom:1px dashed black;
+    font-family: "Poppins" , sans-serif;
+    padding-right: 5px;
+    /* background-color: #ffe385; */
+    min-width: 214px;
+    gap: 1px;
+}
+
+.page{
+    display: flex;
+}
+
+.genreResults{
+    padding: 2px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.genreResults img{
+    width: 200px;
+    height: 250px;
+    margin-bottom: 3px;
+    border-radius: 5px ;
+    border: 1px solid black;
+}
