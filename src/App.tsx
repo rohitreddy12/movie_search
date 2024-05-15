@@ -14,6 +14,7 @@ import NavBar from './Components/navbar';
 import Alert from 'react-bootstrap/Alert';
 import Trending from './Components/trending';
 import CarouselEx from './Components/carousel';
+import { useSearchParams } from 'react-router-dom';
 
 
 
@@ -23,17 +24,30 @@ interface ImgDetails {
   poster_path: string
 }
 
+interface Fav{
+  id:string
+}
+
 const App = () => {
 
   const [search, setSearch] = useState<string>('')
+  // const [searchParams,setSearchParams] = useSearchParams({query:''})
   const [imgDet, setImgDet] = useState<ImgDetails[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [totalPages, setTotalpages] = useState<number>(1)
+  const [favIds,setFavIds] = useState<number[]>([])
   const [Favourites,setFavourites] = useState<number[]>([])
 
   const handleEvent: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearch(event.target.value)
+    // setSearchParams({query :event.target.value})
   }
+
+  
+  // let query:any
+  // if(searchParams.get('query')!==null){
+  //   query = searchParams.get('query')
+  // }
 
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     if (event.target.value !== undefined) {
@@ -43,18 +57,41 @@ const App = () => {
     }
   }
 
+  const getFav = () => {
+    const options = {
+      method: 'GET',
+      headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2M3Yjc2MzQ3MTRiZDExMzU4ZjhlYjMwZmZmNzEwMiIsInN1YiI6IjY2MTAyNzcxZDg2MWFmMDE2NGYzYTZiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6v1iORQR-M6zqXrZfqaUdBEjJrLT2l5c6X6j6en5HsM'
+      }
+  };
+      fetch('https://api.themoviedb.org/3/account/21190820/favorite/movies?language=en-US&page=1&sort_by=created_at.asc', options)
+          .then((response) => response.json())
+          .then(data => {
+            const fav = data.results.map((item:Fav) => item.id)
+            setFavIds(fav)
+          }  
+        )  
+  
+}
+
   const handleClick = (id:number) => {
-    if (Favourites.includes(id)) {
-      setFavourites(Favourites.filter((item) => item!==id));
-      removeFavourite(id);
-      
+    const fav = (localStorage.getItem('favIds'))
+    
+    if(fav !==null){
+      const favItems = JSON.parse(fav)
+      if (favItems.includes(id)) {
+        setFavIds(favIds.filter((item) => item!==id));
+        removeFavourite(id);
+        
+      }
+      else {
+        setFavIds([...favIds,id]);
+        addFavourite(id);
+        // <Alert variant='light'>Added to favourites!</Alert>  
+     }
     }
-    else {
-      setFavourites([...Favourites,id]);
-      addFavourite(id);
-      <Alert variant='light'>Added to favourites!</Alert>
-   }
-  console.log(Favourites)
+    
   }
 
 
@@ -93,6 +130,14 @@ const App = () => {
     }, [debouncedValue, currentPage]
   )
 
+  useEffect(
+    () => {
+      getFav();
+    },[]
+  )
+
+  localStorage.setItem('favIds',JSON.stringify(favIds))
+
   const btnClick = (e: number) => {
     setCurrentPage(e)
   }
@@ -127,14 +172,15 @@ const App = () => {
       </div>
 
       <div className="searchTitle">
-        { (search.length !==0) && <p>Search Results for '{search}'</p>}
+        { (search.length !==0) && <p id='searchHeading'>Search Results for '{search}'</p>}
         <div className="imgbody">
+          {((imgDet.length ==0) && search.length>3) && <p id='noMovies'>Oops!Seems like there are no movies with the entered keyword</p>  }
           {imgDet.map((img) =>          
               <div className='img'>
                 <Link to={`movie_details/${img.id}`}>
                   <img id={img.id} key={img.id} alt='Image is loading' src={`https://image.tmdb.org/t/p/w500${img.poster_path}`}></img>
                 </Link>
-                {(Favourites.includes(Number(img.id))) ? 
+                {(favIds.includes(Number(img.id))) ? 
                   <div className='favIcon' ><button id={img.id} onClick={() => handleClick(Number(img.id))}><IoMdHeart /></button></div> :
                   <div className='favIcon' ><button id={img.id} onClick={() => handleClick(Number(img.id))}><MdFavoriteBorder /></button></div>
                 }
