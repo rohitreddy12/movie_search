@@ -16,6 +16,7 @@ interface GenreMovies {
 
 function Genres() {
 
+    const [active,setActive] =useState<number>()
     const [genreMoviesList, setGenreMoviesList] = useState<GenreMovies[]>([])
     const [genresList, setGenresList] = useState<Genre[]>([])
     const allGenres = () => {
@@ -32,7 +33,6 @@ function Genres() {
             .then(response => {
                 setGenresList(response.genres)
             }
-
             )
             .catch(err => console.error(err));
     }
@@ -59,7 +59,6 @@ function Genres() {
                 })
                 )
                 setGenreMoviesList(genreArr)
-
             }
             )
 
@@ -67,7 +66,12 @@ function Genres() {
 
     const handleClick = (id: number) => {
         genreMovies(id)
+        setActive(id)
     }
+
+    
+
+    
 
     return (
         <div className="mainPage">
@@ -77,7 +81,7 @@ function Genres() {
                 <div className='genreButtons'>
                     {
                         genresList.map((elem) =>
-                            <Button variant='outline-secondary' id={elem.name} onClick={() => handleClick(elem.id)} >{elem.name}</Button>
+                            <Button variant='outline-secondary' id={elem.name} onClick={() => handleClick(elem.id)}  active={active==elem.id}    >{elem.name}</Button>
                         )
                     }
                 </div>
