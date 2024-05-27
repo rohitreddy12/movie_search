@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
 import './Login.css'
 import Button from 'react-bootstrap/Button';
@@ -6,15 +6,17 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import {FormLabel } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
+import { MyContext } from '../MyContext';
 
 interface Props {
     show: boolean,
-    onClose: () => void
+    handleClose: () => void
 }
 function Login(props:Props) {
     
+    const {setIsLoggedIn} = useContext(MyContext)    
+
     const [isValidated,setIsValidated] = useState<boolean>()
-    const [isSessionCreated,setIsSessionCreated] = useState<boolean>(false)
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
 
@@ -58,10 +60,11 @@ function Login(props:Props) {
         .then(response => {
             localStorage.setItem('sessionId',response.session_id)
             if(response.success){
-                setIsSessionCreated(true)
+                setIsLoggedIn(true)
+                
             }
-        })    
-            
+
+        })      
     }
 
     const requestValidate = () => {
@@ -73,7 +76,7 @@ function Login(props:Props) {
                     setIsValidated(true)
                     sessionCreate();
                     setTimeout(() => {
-                        props.onClose();
+                        props.handleClose();
                     },500)
                 }
                 else{
@@ -83,10 +86,28 @@ function Login(props:Props) {
             })
     }
 
-    console.log('dadf',isValidated)
+    const reqToken = () => {
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2M3Yjc2MzQ3MTRiZDExMzU4ZjhlYjMwZmZmNzEwMiIsInN1YiI6IjY2MTAyNzcxZDg2MWFmMDE2NGYzYTZiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6v1iORQR-M6zqXrZfqaUdBEjJrLT2l5c6X6j6en5HsM'
+            }
+        };
+        fetch('https://api.themoviedb.org/3/authentication/token/new', options)
+            .then(response => response.json())
+            .then(response => {
+                localStorage.setItem('requestToken', response.request_token)
+            })
+            .catch(err => console.error(err));
+    }
+
+    useEffect(
+        () => {reqToken()},[]
+    )
 
     return (
-        <Modal centered show={props.show} onHide={props.onClose}>
+        <Modal centered show={props.show} onHide={props.handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title>Login</Modal.Title>
             </Modal.Header>
@@ -110,10 +131,8 @@ function Login(props:Props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                {
-                    isValidated &&
-                    <Alert variant='success'>Success! Let's get you right in</Alert>  
-                }
+                {isValidated === true && <Alert variant='success'>Success! Let's get you right in</Alert>}
+                {isValidated === false && <Alert style={{position:'relative', right:'14px'}} variant='danger'>Kindly check your entered credentials</Alert>}
                 <Button onClick={requestValidate} variant='warning'>Submit</Button>
             </Modal.Footer>
         </Modal>
