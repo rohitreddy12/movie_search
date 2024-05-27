@@ -13,6 +13,7 @@
 #poster{
     width: 362px;
     height: 426px;
+    margin-top: 5px;
 }
 
 .upperdetails{
@@ -29,7 +30,7 @@
 div #title{
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-style: italic;
+    font-style: normal;
     text-align: center;
     font-size: 35px;
     margin: 5px 0px;
@@ -49,12 +50,36 @@ div #title{
     border-left: 3px solid yellow;
     margin-left: 10px;
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 #plotline{
     font-family: "Poppins",sans-serif;
     font-weight: 400;
     text-indent: 50px;
+}
+
+.castImgs{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin: 10px 0px 10px 10px;
+    gap: 5px;
+    overflow-x: scroll;
+    
+}
+
+img{
+    flex-basis: 150px;
+    height: 200px;
+    border-radius: 8px;
+}
+
+p#name{
+    font-weight: 600;
+    position: relative;
+    left: 3px;
+    font-size: medium;
 }
 
 
