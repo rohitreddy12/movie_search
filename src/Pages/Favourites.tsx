@@ -1,10 +1,11 @@
 
-import { useEffect, useState } from 'react';
-import NavBar from '../Components/navbar';
+import { useContext, useEffect, useState } from 'react';
 import './Favourites.css';
-import { Card, Col, Row } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
+import Login from '../Components/Login';
+import { FavContext, MyContext } from '../MyContext';
+import FavouriteIcons from '../Components/FavouriteIcons';
+// import getFavourite from '../Components/getFavourite';
 
 
 interface Details {
@@ -15,7 +16,13 @@ interface Details {
 
 function Favourites() {
 
+    const { isLoggedIn} = useContext(MyContext)
+
     const [favItems, setFavItems] = useState<Details[]>([])
+
+    const [show, setShow] = useState<boolean>(false)
+
+    const handleClose = () => setShow(false);
 
 
     const options = {
@@ -34,30 +41,50 @@ function Favourites() {
                     poster_path: item.poster_path,
                     title: item.title,
                     id: item.id
+
                 }))
+
+
                 setFavItems(imgParse)
             })
     }
 
-
     useEffect(() => {
-        favourtiesList();
-    }, [])
-
+        if(isLoggedIn){
+            favourtiesList()
+            setShow(false)
+        }
+        else{
+            setShow(true)
+        }
+    }, [isLoggedIn])
 
     return (
-        <div>
-            <NavBar />
+        <div className='main'>
             <div id='heading'>Favourited Movies</div>
             <div className="favImgs">
+                {
+                    !isLoggedIn && <div id='loginMsg'>You must login to view your favourites!!!</div>
+                }
+
                 {favItems.map((item) =>
-                    <>
-                        <Link to={`/movie_details/${item.id}`}>
-                            <img id={item.id} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt='Image' />
-                        </Link>
-                    </>
+
+                    <div>
+                        {
+                            isLoggedIn &&
+                            <div className='group'>
+                                <Link to={`/movie_details/${item.id}`}>
+                                <img id={item.id} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt='Image' />
+                                </Link>
+                                <FavouriteIcons imgId={item.id} favIds={favItems.map((item) => item.id)} />
+                            </div>
+                        }
+                    </div>
+
+
                 )}
             </div>
+            <Login show={show} handleClose={handleClose}  />
         </div>
 
 
