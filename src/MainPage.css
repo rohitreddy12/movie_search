@@ -1,0 +1,228 @@
+*{
+  /* background-color: #000; */
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;  
+}
+
+.mainimg{
+  background-color: white;
+  /* background-image: url("C:\New folder\movie_search\edited.png");  */
+  background-image: url("C:\New folder\movie_search\eaolar2v4vj31.png");
+  background-size: cover ;
+  /* background-position-x: 580px; */
+  background-position-y: -9.5vw;
+  background-repeat: no-repeat;
+  /* height: 350px;
+  width: 1000px; */
+  border-bottom: 1px dashed black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.header2 div{ 
+  display: flex;
+  font-size:3.9vw ;
+  margin-left: 40px;
+}
+
+#se{
+  font-size: 2.3vw;
+  color: rgba(0, 0, 0, 0.719);
+  font-family: "Poppins";
+  font-style: italic;
+  
+}
+
+.line{
+  margin-left: 40px;
+  font-size: 1.7vw;
+  font-family: "Poppins";
+  margin-top: 5px;
+  
+  
+}
+
+.header2{
+  color: rgba(0, 0, 0, 0.719);
+  /* position:relative;
+  top: 10px; */
+  font-family: "Poppins";
+  font-style: normal;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+
+#dot{
+  color: #ffbc07;
+}
+
+
+.header1 #ms1{
+  color: #9c5c07;
+  text-align: center;
+  font-size: 5vw;
+  font-family:"Poppins";
+  font-style: italic;
+  text-shadow: 2px 2px 4px #000000;
+}
+
+#searchbar{ 
+  margin: 5px;  
+}
+
+::placeholder{
+  color:  #0b0b0aa6;
+  font-family: "Poppins";
+}
+
+
+.search input{
+    width: 50%;
+    height: 45px;
+    background-color: #f1e6bd;
+    border-radius: 25px;
+    border:2px solid grey;
+    padding-left: 15px;
+    font-family: "Poppins";
+    position: relative;
+    left: 26vw;
+    
+
+}
+
+
+    
+
+
+.search input:focus{
+  border: 1.5px solid #080808;
+  box-shadow: 3px 3px  10px #4b300f;
+}
+
+.material-symbols-outlined{
+  /* font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48 */
+  color: rgb(190, 150, 21);
+  /* background-color: #000000; */
+  position: absolute;
+  bottom: 3px;
+  right: 318px;
+  font-size: 3.1vw;
+
+}
+
+button{
+  border: none;
+}
+
+.imgbody{
+  
+  /* padding: 5px 20px 0px; */
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  /* padding: 5px; */
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+
+
+.img{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+}
+
+#noMovies{
+  font-family: "Poppins";
+  font-style: italic;
+  font-size: 15px;
+}
+
+.searchTitle{
+  background-color: #f2f2f2;
+  padding-left:10px;
+  padding-top: 10px;
+}
+
+#searchHeading{
+  font-family: "Poppins",sans-serif;
+  font-size: 27px;
+  font-weight: 400;
+}
+
+
+
+.img img{
+  height: 250px;
+  /* border: 1px solid #4d4444; */
+  border-radius: 5px ;
+  padding-left: 2px;
+  margin: 2px 20px 0px;
+  width: 200px;
+  
+}
+
+.pages{
+  display: flex;
+  justify-content: center;
+}
+
+.pagination{
+  
+  display: flex;
+  justify-content: center;
+  margin:4px;
+  padding: 2px;
+}
+
+.pagiantion #searchbox{
+  margin: 10px;
+}
+
+
+@media screen and (max-width: 576px) {
+
+  div .line{
+    font-size: 4.2vw;
+    margin-bottom: auto;
+  }
+
+  #se{
+    font-size: 5.2vw;
+  }
+
+  .header2 div{
+    font-size: 6.4vw;
+  }
+
+  .header2{
+    margin-bottom: 6.81vw;
+  }
+  
+  .mainimg{
+    height: 86.36vw;
+    justify-content: space-between;
+    background-position: center center;
+  }
+
+  #searchbar{
+    margin: 0px 0px 3.4vw 0px ;
+  }
+}
+
+
+
+
+
+
+
