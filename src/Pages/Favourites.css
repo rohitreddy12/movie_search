@@ -1,6 +1,7 @@
-/* .main{
+.main{
     background-color: #f2f2f2;
-} */
+    max-height: 100%;
+}
 
 #heading{
     font-family: "Poppins",sans-serif;
@@ -8,22 +9,28 @@
     font-weight: 500;
     border-left: 3px solid rgb(205, 169, 50);
     border-radius: 3px;
-    margin: 10px;
+    /* margin: 10px; */
+    padding: 10px;
+    margin-bottom: 18px;
 }
 
 .favImgs{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    /* justify-content: center; */
+    justify-content: space-around;
 }
 
+.title{
+    font-family: "Poppins";
+    font-weight: 500;
+}
 
 .favImgs img{
     width: 200px;
     height: 250px;
     border-radius: 5px ;
-    margin: 2px 20px 20px;
+    margin: 2px 20px 5px;
     border: 1px solid black;
 }
 

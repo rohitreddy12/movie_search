@@ -3,9 +3,9 @@ import { useContext, useEffect, useState } from 'react';
 import './Favourites.css';
 import { Link } from 'react-router-dom';
 import Login from '../Components/Login';
-import { FavContext, MyContext } from '../MyContext';
+import {  MyContext } from '../MyContext';
 import FavouriteIcons from '../Components/FavouriteIcons';
-// import getFavourite from '../Components/getFavourite';
+
 
 
 interface Details {
@@ -24,17 +24,17 @@ function Favourites() {
 
     const handleClose = () => setShow(false);
 
-
+    
     const options = {
         method: 'GET',
         headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2M3Yjc2MzQ3MTRiZDExMzU4ZjhlYjMwZmZmNzEwMiIsInN1YiI6IjY2MTAyNzcxZDg2MWFmMDE2NGYzYTZiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6v1iORQR-M6zqXrZfqaUdBEjJrLT2l5c6X6j6en5HsM'
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2M3Yjc2MzQ3MTRiZDExMzU4ZjhlYjMwZmZmNzEwMiIsInN1YiI6IjY2MTAyNzcxZDg2MWFmMDE2NGYzYTZiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6v1iORQR-M6zqXrZfqaUdBEjJrLT2l5c6X6j6en5HsM'
         }
-    };
+      };
 
     const favourtiesList = () => {
-        fetch('https://api.themoviedb.org/3/account/21190820/favorite/movies?language=en-US&page=1&sort_by=created_at.asc', options)
+        fetch('https://api.themoviedb.org/3/account/21190820/favorite/movies?language=en-US&page=1&sort_by=created_at.asc',options)
             .then((response) => response.json())
             .then((data): void => {
                 const imgParse: Details[] = data.results.map((item: Details) => ({
@@ -43,11 +43,11 @@ function Favourites() {
                     id: item.id
 
                 }))
-
-
-                setFavItems(imgParse)
+            setFavItems(imgParse)
             })
     }
+
+    console.log(favItems)
 
     useEffect(() => {
         if(isLoggedIn){
@@ -76,6 +76,7 @@ function Favourites() {
                                 <Link to={`/movie_details/${item.id}`}>
                                 <img id={item.id} src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt='Image' />
                                 </Link>
+                                <div className='title'>{item.title}</div>
                                 <FavouriteIcons imgId={item.id} favIds={favItems.map((item) => item.id)} />
                             </div>
                         }
