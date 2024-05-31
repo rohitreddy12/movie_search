@@ -1,35 +1,92 @@
-.genreButtons{
-    width: 250px;
-    height: 500px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-content: space-around;
-    border-right:1px dashed black;
-    border-bottom:1px dashed black;
-    font-family: "Poppins" , sans-serif;
-    padding-right: 5px;
-    /* background-color: #ffe385; */
-    min-width: 214px;
-    gap: 1px;
+.genrePage{
+    display: grid;
+    grid-template-columns: 25% auto;
 }
 
-.page{
+.genreSideBar{
+    display: grid;
+    grid-template-rows: max-content;
+    padding: 13px;
+    row-gap: 10px;
+    
+}
+
+.genreBox{
+    
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px -1px;
+}
+
+.genreTitle{
+    padding-left: 15px;
+    padding-top: 3px;
+}
+
+.genreButtons{
     display: flex;
+    flex-wrap: wrap;
+    gap: 9px 9px;
+    /* justify-content: space-evenly; */
+    padding: 10px;
+}
+
+a.genrePill{
+    border-radius: 20px;
+}
+
+
+#sortbyButton{
+    width: 100%;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px -1px;
+    text-align: left;
+    font-weight: 500;
+    --bs-btn-hover-color: none; 
+    --bs-btn-hover-bg: none;
+}
+
+#dropdownFilters{
+    width: 75%;
+    height: 80px;
+    padding: 0px;
+}
+
+div.dropdown-header{
+    padding: 7px;
+}
+
+.selectBox{
+    padding-left: 7px;
+}
+
+a{
+    text-decoration: none;
+}
+
+select#filters{
+    width: 80%;
+    height: 30px;
+    background-color: #e4e7eb;
+    border-radius: 8px;
+    border-color: #e4e7eb;
 }
 
 .genreResults{
-    padding: 2px;
+    padding: 5px;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 4px 2px;
+    margin: 6px;
 }
 
-.genreResults img{
-    width: 200px;
-    height: 250px;
-    margin-bottom: 3px;
-    border-radius: 5px ;
-    border: 1px solid black;
+@media screen and (max-width: 760px){
+    .genrePage{
+        display: flex;
+        flex-direction: column;
+    }
+ 
 }
+
