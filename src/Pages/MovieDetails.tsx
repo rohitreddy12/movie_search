@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import './MovieDetails.css'
 import Badge from 'react-bootstrap/Badge';
-import NavBar from '../Components/navbar';
+import FavouriteIcons from '../Components/FavouriteIcons';
+
 
 interface MovieDet {
     title: string,
@@ -11,9 +12,10 @@ interface MovieDet {
     poster_path: string,
     release_date: string,
     status: string,
-    production_house: string,
+    // production_house: string,
     runtime: number,
     rating: number,
+    backdrop_path:string
 }
 
 interface Cast{
@@ -21,7 +23,12 @@ interface Cast{
     profile_path:string
 }
 
-interface WatchPro{
+interface Provider{
+    logo_path:string,
+}
+
+
+interface StreamProvider{
     logo_path:string,
     provider_name:string
 }
@@ -30,8 +37,11 @@ function MovieDetails() {
 
     const [movieDetails, setMovieDetails] = useState<MovieDet>()
     const [castDetails, setCastDetails] = useState<Cast[]>([])
-    const [rentWatchProviders,setRentWatchProviders] = useState<WatchPro[]>([])
-    const [buyWatchProviders,setBuyWatchProviders] = useState<WatchPro[]>([])
+    const [rentProviders,setRentProviders] = useState<StreamProvider[]>()
+    const [streamProviders,setStreamProviders] = useState<StreamProvider[]>()
+    const [buyProviders,setBuyProviders] = useState<StreamProvider[]>()
+    const [adsProviders,setAdsProviders] = useState<StreamProvider[]>()
+
 
     const params = useParams()
 
@@ -40,26 +50,31 @@ function MovieDetails() {
 
 
     const getMovieDetails = (id: string) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=07c7b7634714bd11358f8eb30fff7102`)
-            .then(response => response.json())
-            .then((data) => {
-                const details: MovieDet = {
-                    title: data.title,
-                    genres: data.genres.map((genre: any) => genre.name),
-                    overview: data.overview,
-                    poster_path: data.poster_path,
-                    release_date: data.release_date,
-                    status: data.status,
-                    production_house: data.production_companies[0].name,
-                    runtime: data.runtime,
-                    rating: data.vote_average
-                }
-                setMovieDetails(details)
-            })
+        try {
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=07c7b7634714bd11358f8eb30fff7102`)
+                .then(response => response.json())
+                .then((data) => {
+                    const details: MovieDet = {
+                        title: data.title,
+                        genres: data.genres.map((genre: any) => genre.name),
+                        overview: data.overview,
+                        poster_path: data.poster_path,
+                        release_date: data.release_date,
+                        status: data.status,
+                        runtime: data.runtime,
+                        rating: data.vote_average,
+                        backdrop_path:data.backdrop_path
+                        // production_house: data.production_companies[0].name,
+                    }
+                    setMovieDetails(details)
+                })    
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const getCast = (id:string) => {
-        fetch(`https://api.themoviedb.org/3/movie/${ id}/credits?api_key=07c7b7634714bd11358f8eb30fff7102`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=07c7b7634714bd11358f8eb30fff7102`)
             .then(response => response.json())
             .then((data) => {
                 const cast:Cast[] = data.cast.map((item:Cast) => ({
@@ -74,15 +89,44 @@ function MovieDetails() {
         fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=07c7b7634714bd11358f8eb30fff7102`)
             .then(response => response.json())
             .then((data) => {
-                const rentWatch:WatchPro[] = data.results.IN.rent.map((item:WatchPro) => ({
-                    logo_path:item.logo_path,
-                    provider_name:item.provider_name}))
-                const buyWatch:WatchPro[] = data.results.IN.rent.map((item:WatchPro) => ({
-                    logo_path:item.logo_path,
-                    provider_name:item.provider_name
-                }))
-                setRentWatchProviders(rentWatch)
-                setBuyWatchProviders(buyWatch)
+                if(data.results.IN){
+                    if(data.results.IN.flatrate){
+                        const results = data.results.IN.flatrate.map((item:StreamProvider) => ({
+                            logo_path:item.logo_path,
+                            provider_name:item.provider_name
+                        }))
+                        setStreamProviders(results)
+                    }
+                    if(data.results.IN.rent){
+                        const results = data.results.IN.rent.map((item:StreamProvider) => ({
+                            logo_path:item.logo_path,
+                            provider_name:item.provider_name
+                        }))
+                        setRentProviders(results)
+                    }
+                    if(data.results.IN.buy){
+                        const results = data.results.IN.buy.map((item:StreamProvider) => ({
+                            logo_path:item.logo_path,
+                            provider_name:item.provider_name
+                        }))
+                        setBuyProviders(results)
+                    }
+                    if(data.results.IN.ads){
+                        const results = data.results.IN.ads.map((item:StreamProvider) => ({
+                            logo_path:item.logo_path,
+                            provider_name:item.provider_name
+                        }))
+                        setAdsProviders(results)
+                    }
+                }
+                // const rentWatch:WatchPro[] = data.results.IN.rent.map((item:WatchPro) => ({
+                //     logo_path:item.logo_path,
+                //     provider_name:item.provider_name}))
+                // const buyWatch:WatchPro[] = data.results.IN.rent.map((item:WatchPro) => ({
+                //     logo_path:item.logo_path,
+                //     provider_name:item.provider_name
+                // }))
+                
             })
             .catch(err => console.log(err))
     }
@@ -94,8 +138,7 @@ function MovieDetails() {
                 getMovieDetails(movieId)
                 getCast(movieId)
                 getMovieProviders(movieId)
-                console.log(rentWatchProviders)
-                console.log(buyWatchProviders)
+                console.log('WatchProvder:',streamProviders)
             }
         }, []
     )
@@ -107,22 +150,28 @@ function MovieDetails() {
             <div className="div">
                 {
                     !(movieDetails === undefined) && (
-                        <div id='mainDet'>
+                        <div className='mainDet'>
                             <div className='upperDet'>
+                                {/* <FavouriteIcons imgId={''} favIds={[]} /> */}
                                 <div className="poster">
-                                    <img id='poster' src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt="" />
+                                    {
+                                        (movieDetails.poster_path !== null) ?
+                                        <img id='poster' src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`} alt="Image not Available" /> : <div id='poster'>Image Unavailable</div>
+                                    }
                                 </div>
                                 <div className='upperdetails'>
                                     <div ><span id='subh'>Genre: </span> {movieDetails.genres.join(" | ")} </div>
                                     <div ><span id='subh'>Release Date: </span>{movieDetails.release_date}</div>
-                                    <div ><span id='subh'>Prodction House: </span>{movieDetails.production_house}</div>
+                                    {/* <div ><span id='subh'>Prodction House: </span>{movieDetails.production_house !== null ? movieDetails.production_house : 'Information Unavailable'}</div> */}
                                     <div ><span id='subh'>Runtime: </span>{movieDetails.runtime} mins</div>
                                     <div ><span id='subh'>Rating: </span>{movieDetails.rating}/10</div>
                                     <div id='status'><span id='subh'></span><Badge bg='success'>{movieDetails.status}</Badge></div>
                                 </div>
+                
                             </div>
                             <div id='title'>{movieDetails.title}</div>
-                            <div>
+                            
+                            <div className='moreDetails'>
                                 <div id="plot">The Plot</div>
                                 <div id="plotline">{movieDetails.overview}</div>
                                 <div id="cast">
@@ -131,7 +180,7 @@ function MovieDetails() {
                                         {
                                             castDetails.map((item) => 
                                                 <div>
-                                                    <img src={`https://image.tmdb.org/t/p/w500${item.profile_path}`} alt="Img is loading" />
+                                                    <img src={`https://image.tmdb.org/t/p/w500${item.profile_path}`} alt="Image Not Found" />
                                                     <p id='name'>{item.name}</p>
                                                 </div>
                                             )
@@ -140,7 +189,36 @@ function MovieDetails() {
                                 </div>
                                 <div id="watchOptions">
                                     <p id='plot'>Watch Options</p>
-                                    <p>Buy</p>
+                                    <div className="stream">
+                                        <p id='streamTitle'>Stream</p>
+                                        {
+                                            (streamProviders) ? 
+                                            streamProviders.map(item => 
+                                                <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
+                                            ) : "There are no Poviders"
+                                        }
+                                        <p id='streamTitle'>Ads</p>
+                                        {
+                                            (adsProviders) ? 
+                                            adsProviders.map(item => 
+                                                <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
+                                            ) : "There are no Poviders"
+                                        }
+                                        <p id='streamTitle'>Rent</p>
+                                        {
+                                            (rentProviders) ? 
+                                            rentProviders.map(item => 
+                                                <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
+                                            ) : "There are no Poviders"
+                                        }
+                                        <p id='streamTitle'>Buy</p>
+                                        {
+                                            (buyProviders) ? 
+                                            buyProviders.map(item => 
+                                                <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
+                                            ) : "There are no Poviders"
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
