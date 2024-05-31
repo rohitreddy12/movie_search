@@ -1,0 +1,28 @@
+.cardCustom{
+    width: 180px;
+    margin: 7px;
+}
+
+.card-imgCustom{
+    width: 180px;
+    height: 200px;
+}
+
+.card-bodyCustom{
+    padding: 5px;
+    height: max-content;
+    text-align: center;
+    margin: 5px;
+}
+
+.card-titleCustom{
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+a{
+    text-decoration: none;
+}
+
