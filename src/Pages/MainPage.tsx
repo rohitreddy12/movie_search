@@ -9,6 +9,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import Trending from '../Components/trending';
 import FavouriteIcons from '../Components/FavouriteIcons';
 import {getFav} from '../Components/getFavourite';
+import { store } from '../Store/store';
 
 
 
@@ -28,10 +29,10 @@ const MainPage = () => {
   const [imgDet, setImgDet] = useState<ImgDetails[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [totalPages, setTotalpages] = useState<number>(1)
-  const [favIds,setFavIds] = useState<string[]>([])
 
 
-  let fav=[]
+
+  
 
 
   const handleEvent: React.ChangeEventHandler<HTMLInputElement> = (event) => {
@@ -50,7 +51,7 @@ const MainPage = () => {
 
 
   const apiCall = (movie: string, currentPage: number) => {
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&api_key=07c7b7634714bd11358f8eb30fff7102&page=${currentPage}`)
+    fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&api_key=${process.env.REACT_APP_API_KEY}&page=${currentPage}`)
       .then(response => response.json())
       .then((data): void => {
         setTotalpages(data.total_pages)
@@ -68,12 +69,6 @@ const MainPage = () => {
       .catch(err => console.log(err))
   }
 
-  const fetchFav = async() => {
-    fav = await getFav()
-    setFavIds(fav)
-  }
-
-
   const debouncedValue = useDebounce(search, 700)
 
 
@@ -90,16 +85,19 @@ const MainPage = () => {
   )
 
   useEffect(() => {
-    fetchFav()
+    // fetchFav()
     let query = sessionStorage.getItem('q')
     if(query !== null)
       setSearch(query)
+    // console.log(process.env.REACT_APP_API_KEY)
   },[])
 
   
   const btnClick = (e: number) => {
     setCurrentPage(e)
   }
+
+  // console.log('in mainpage',store.getState())
 
   return (
     <div className='main'>
@@ -131,7 +129,7 @@ const MainPage = () => {
                 <img id={img.id} key={img.id} alt='Image Unavailable' src={`https://image.tmdb.org/t/p/w500${img.poster_path}`}></img>
               </Link>
               <div className="overlayTitle">{img.title}</div>
-              <FavouriteIcons imgId={img.id} favIds={favIds} setFavIds={setFavIds}/>
+              <FavouriteIcons imgId={img.id} poster_path={img.poster_path} title={img.title} />
             </div>
           )}
         </div>

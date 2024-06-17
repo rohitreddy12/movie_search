@@ -51,7 +51,7 @@ function MovieDetails() {
 
     const getMovieDetails = (id: string) => {
         try {
-            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=07c7b7634714bd11358f8eb30fff7102`)
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`)
                 .then(response => response.json())
                 .then((data) => {
                     const details: MovieDet = {
@@ -74,7 +74,7 @@ function MovieDetails() {
     }
 
     const getCast = (id:string) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=07c7b7634714bd11358f8eb30fff7102`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.json())
             .then((data) => {
                 const cast:Cast[] = data.cast.map((item:Cast) => ({
@@ -86,7 +86,7 @@ function MovieDetails() {
     }
 
     const getMovieProviders = (id:string) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=07c7b7634714bd11358f8eb30fff7102`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.json())
             .then((data) => {
                 if(data.results.IN){
@@ -138,7 +138,6 @@ function MovieDetails() {
                 getMovieDetails(movieId)
                 getCast(movieId)
                 getMovieProviders(movieId)
-                console.log('WatchProvder:',streamProviders)
             }
         }, []
     )

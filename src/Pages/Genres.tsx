@@ -34,7 +34,7 @@ function Genres() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwN2M3Yjc2MzQ3MTRiZDExMzU4ZjhlYjMwZmZmNzEwMiIsInN1YiI6IjY2MTAyNzcxZDg2MWFmMDE2NGYzYTZiYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6v1iORQR-M6zqXrZfqaUdBEjJrLT2l5c6X6j6en5HsM'
+                Authorization: `${process.env.REACT_APP_AUTHORIZATION_KEY}`
             }
         };
 
@@ -53,7 +53,7 @@ function Genres() {
 
     const genreMovies = (movieFilter:MovieFilter) => {
                
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=07c7b7634714bd11358f8eb30fff7102&with_genres=${movieFilter.genre}&sort_by=${movieFilter.filter}`)
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&with_genres=${movieFilter.genre}&sort_by=${movieFilter.filter}`)
             .then(response => response.json())
             .then((data) => {
                 const genreArr: GenreMovies[] = data.results.map((item: GenreMovies) => ({

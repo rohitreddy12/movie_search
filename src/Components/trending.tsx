@@ -13,7 +13,7 @@ function Trending() {
 
 
     const getTrending = () => {
-        fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=07c7b7634714bd11358f8eb30fff7102')
+        fetch(`https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=${process.env.REACT_APP_API_KEY}`)
             .then(response => response.json())
             .then(data => {
                 const moviesArr = data.results.map((item: Trending) => ({

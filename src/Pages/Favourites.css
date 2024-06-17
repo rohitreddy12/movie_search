@@ -48,3 +48,12 @@ div #loginMsg{
     background-color: antiquewhite;
     margin: 50px;
 }
+
+.noFavText{
+    font-size:25px;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 400;
+    font-style: italic;
+    background-color: antiquewhite;
+    margin: 50px;
+}

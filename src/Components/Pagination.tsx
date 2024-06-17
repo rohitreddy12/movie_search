@@ -10,14 +10,12 @@ interface Props {
 
 const Pagin = (props: Props) => {
 
-
-
     return (
         <div>
             <div>
                 <Pagination>
 
-                    {props.curr>1 && <Pagination.Prev bsPrefix='item'  onClick={() => { props.btnclick(props.curr - 1) }} /> }
+                    {props.curr>1 && <Pagination.Prev onClick={() => { props.btnclick(props.curr - 1) }} /> }
                     {props.curr !=1 && <Pagination.Item  onClick={() => { props.btnclick(1) }}>{1}</Pagination.Item>}
                     {props.curr > 4 && <Pagination.Ellipsis onClick={() => { props.btnclick(props.curr - 2) }} />}
 
