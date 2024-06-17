@@ -8,13 +8,22 @@ import Login from './Login';
 import { Link } from 'react-router-dom';
 import { MyContext } from '../MyContext';
 import Logout from './Logout';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Form } from 'react-bootstrap';
+import { store } from '../Store/store';
+import { modeToggled } from '../Store/actions';
 
 
+interface Props{
+    mode:string
+    style:{}
+}
 
-
-function NavBar() { 
+function NavBar(props:Props) { 
 
     const {isLoggedIn,setIsLoggedIn} = useContext(MyContext)
+
+    
 
     const [showLogin, setShowLogin] = useState<boolean>(false)
     const handleLoginClose = () => setShowLogin(false);
@@ -33,24 +42,26 @@ function NavBar() {
         handleLogoutShow()
     }
 
-    console.log(isLoggedIn)
+    const handleTogglemode = () => {
+        store.dispatch(modeToggled())
+    }
 
-    
+    const logo = "src\Logo-resized.jpg"
 
 
     return (
         <>
-            <Navbar bg='warning '  data-bs-theme='light' expand="lg" >
+            <Navbar  bg='warning' sticky='top'  data-bs-theme='light' expand="sm" style={props.style}>
                 <Container fluid>
                     
                         <Navbar.Brand as={Link} to='/'>
                             {/* <img
                             alt="logo"
-                            src='C:\New folder\movie_search\images\Screenshot 2024-04-26 043929.jpg'
-                            width="30"
+                            src={logo}
+                            width="60"
                             height="30"
                             className="d-inline-block align-top"
-                        /> */}
+                        />{' '} */}
                             Filmy Lens
                         </Navbar.Brand>
                     
@@ -62,18 +73,32 @@ function NavBar() {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+                            <LinkContainer to='/' activeStyle={{color:'brown'}} style={{color:'black'}}>
+                                <Nav.Link >Home</Nav.Link>
+                            </LinkContainer>
                             
-                            <Nav.Link as={Link} to='/favourites'>Favourites</Nav.Link>
+                            <LinkContainer to='/favourites' activeStyle={{color:'brown'}} style={{color:'black'}} >
+                                <Nav.Link  >Favourites</Nav.Link>
+                            </LinkContainer>
                             
-
-                            <Nav.Link as={Link} to='/genres'>Genres</Nav.Link>
+                            <LinkContainer to='/genres' activeStyle={{color:'brown'}} style={{color:'black'}}>
+                                <Nav.Link  >Genres</Nav.Link>
+                            </LinkContainer>
 
                         </Nav>
+                        <Form.Check style={{fontSize:'15px',textAlign:'center'}}
+                            type="switch"
+                            id="custom-switch"
+                            label={props.mode}    
+                            onClick={handleTogglemode}
+                        />
+                        <div style={{marginLeft: "10px"}}>
                         {
                             (isLoggedIn) ?
                                  <Button variant="outline-dark" onClick={logoutClick}>Logout</Button> : <Button variant="outline-dark" onClick={loginClick} >Login</Button>
                         }
+                        </div>
+                        
 
 
                     </Navbar.Collapse>
