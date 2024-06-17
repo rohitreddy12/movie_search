@@ -39,7 +39,7 @@ function App() {
         fetchData()
     })
 
-    const apiKey = process.env.REACT_APP_API_KEY
+    
     console.log('App.tsx is triggered')
     
     
