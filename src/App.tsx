@@ -8,24 +8,72 @@ import MainPage from './Pages/MainPage'
 import { useEffect, useState} from 'react'
 import {MyContext} from './MyContext'
 import NotFoundPage from './Pages/NotFoundPage'
+import { getFav } from './Components/getFavourite'
+import favouritesFetched  from './Store/actions'
+import {store} from './Store/store'
+import { Provider } from 'react-redux'
 
 function App() {
+
+    const [mode, setmode] = useState('')
+
+    const [style,setStyle] = useState({})
+
+    const unsubscribe = store.subscribe(() => {
+        const updatedMode = store.getState().mode.mode
+        setmode(updatedMode)
+    })
       
     const isSessionCreated = () => {
         let sessionId = localStorage.getItem('sessionId')
         return sessionId !== null ? true : false
     }
 
-    const [isLoggedIn,setIsLoggedIn] = useState(isSessionCreated())
+    
+    const fetchData = async() => {
+        const fetchFav = await getFav()
+        store.dispatch(favouritesFetched(fetchFav))
+    }
+      
+    useEffect(() => {
+        fetchData()
+    })
+
+    const apiKey = process.env.REACT_APP_API_KEY
+    console.log('App.tsx is triggered')
+    
+    
+    const [isLoggedIn,setIsLoggedIn] = useState(isSessionCreated()) 
+
     
 
+    useEffect(() => {
+        if(mode === 'dark'){
+            setStyle(
+                {
+                    color:'white',
+                    backgroundColor:'black',
+                 
+                }
+            )
+        }
+        else{
+            setStyle({})
+        }
+    },[mode])
+
+    
+    
+    
     return (
         
         
         <div>
+            <Provider store={store}>
+
             
             <MyContext.Provider value={{isLoggedIn ,setIsLoggedIn}}>
-                <NavBar />
+                <NavBar mode={mode} style={style} />
             <Routes>
                 <Route path='*' element={<NotFoundPage />}></Route>
                 <Route path='/' element={<MainPage />} ></Route>
@@ -34,7 +82,7 @@ function App() {
                 <Route path='/movie_details/:movieId' element={<MovieDetails />}></Route>
             </Routes>
             </MyContext.Provider>
-            
+            </Provider>
         </div>
     )
 }
