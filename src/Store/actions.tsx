@@ -29,3 +29,22 @@ export function modeToggled(){
         type: actionTypes.modeToggled
     }
 }
+
+export function usericonFetched(userIcon:string){
+    return{
+        type:actionTypes.usericonFetched,
+        payload: userIcon
+    }
+}
+
+export function userLoggedin(){
+    return{
+        type:actionTypes.userLoggedin
+    }
+}
+
+export function userLoggedout(){
+    return{
+        type:actionTypes.userLoggedout
+    }
+}

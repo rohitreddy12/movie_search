@@ -9,9 +9,11 @@ import { Link } from 'react-router-dom';
 import { MyContext } from '../MyContext';
 import Logout from './Logout';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Form } from 'react-bootstrap';
+import { Figure, Form } from 'react-bootstrap';
 import { store } from '../Store/store';
 import { modeToggled } from '../Store/actions';
+import { useSelector } from 'react-redux';
+import { RootState } from '../Store/reducer';
 
 
 interface Props{
@@ -21,8 +23,11 @@ interface Props{
 
 function NavBar(props:Props) { 
 
-    const {isLoggedIn,setIsLoggedIn} = useContext(MyContext)
+    // const {isLoggedIn,setIsLoggedIn} = useContext(MyContext)
 
+    const isLoggedIn = useSelector((store:RootState) => store.userLogin.isLoggedin)
+
+    
     
 
     const [showLogin, setShowLogin] = useState<boolean>(false)
@@ -46,8 +51,10 @@ function NavBar(props:Props) {
         store.dispatch(modeToggled())
     }
 
-    const logo = "src\Logo-resized.jpg"
+    // const logo = 'C:\New folder\movie_search\public\small-Logo.jpg'
 
+    const userIcon = useSelector((store:RootState) => store.userIcon.userIcon.charAt(0).toUpperCase())
+   
 
     return (
         <>
@@ -55,13 +62,13 @@ function NavBar(props:Props) {
                 <Container fluid>
                     
                         <Navbar.Brand as={Link} to='/'>
-                            {/* <img
+                            <img
                             alt="logo"
-                            src={logo}
-                            width="60"
-                            height="30"
+                            src="/Logo.jpg"
+                            // width="30"
+                            // height="30"
                             className="d-inline-block align-top"
-                        />{' '} */}
+                        />{' '}
                             Filmy Lens
                         </Navbar.Brand>
                     
@@ -86,12 +93,23 @@ function NavBar(props:Props) {
                             </LinkContainer>
 
                         </Nav>
-                        <Form.Check style={{fontSize:'15px',textAlign:'center'}}
+                        <Form.Check style={{fontSize:'15px',textAlign:'center',margin:'0px 10px'}}
                             type="switch"
                             id="custom-switch"
                             label={props.mode}    
                             onClick={handleTogglemode}
                         />
+                        {
+                            isLoggedIn &&
+                                <>
+                                    <div>Welcome!</div>
+                                    <div className='userIcon'>
+                                    {userIcon}
+                                    </div>
+                                </>
+                                
+                        }
+                        
                         <div style={{marginLeft: "10px"}}>
                         {
                             (isLoggedIn) ?

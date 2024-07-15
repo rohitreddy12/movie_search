@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { Alert, Button, Form, FormLabel, Modal } from 'react-bootstrap'
 import { MyContext } from '../MyContext'
+import { store } from '../Store/store'
+import { userLoggedout } from '../Store/actions'
+
 
 interface Props{
     logoutShow:boolean,
@@ -30,7 +33,7 @@ function Logout(props:Props) {
         .catch(err => console.error(err));
     
         localStorage.removeItem('sessionId')
-        setIsLoggedIn(false)
+        store.dispatch(userLoggedout())
         props.handleClose()
     }
 

@@ -21,8 +21,10 @@ interface Details {
 
 function Favourites() {
     
-    const { isLoggedIn} = useContext(MyContext)
+    // const { isLoggedIn} = useContext(MyContext)
     const [show, setShow] = useState<boolean>(false)
+
+    const isLoggedIn = useSelector((store:RootState) => store.userLogin.isLoggedin)
 
     const handleClose = () => setShow(false);
 
@@ -48,10 +50,13 @@ function Favourites() {
                 }
 
                 {
-                    (isLoggedIn && favItems.length === 0)  ? 
+                    (isLoggedIn && favItems.length === 0)  &&
 
-                    <div className='noFavText'>You have not favourited any movie yet!</div> :            
-                    
+                    <div className='noFavText'>You have not favourited any movie yet!</div>            
+                }
+
+                {   
+                    (isLoggedIn) &&
                     favItems.map((item:Fav) =>
                     <div>
                         {
@@ -65,7 +70,7 @@ function Favourites() {
                         }                       
                     </div>
                 )
-            }
+                }
             </div>
             <Login show={show} handleClose={handleClose}  />
         </div>

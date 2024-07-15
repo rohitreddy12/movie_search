@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import './MovieDetails.css'
 import Badge from 'react-bootstrap/Badge';
-import FavouriteIcons from '../Components/FavouriteIcons';
 
 
 interface MovieDet {
@@ -194,28 +193,28 @@ function MovieDetails() {
                                             (streamProviders) ? 
                                             streamProviders.map(item => 
                                                 <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
-                                            ) : "There are no Poviders"
+                                            ) : "There are no Providers"
                                         }
                                         <p id='streamTitle'>Ads</p>
                                         {
                                             (adsProviders) ? 
                                             adsProviders.map(item => 
                                                 <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
-                                            ) : "There are no Poviders"
+                                            ) : "There are no Providers"
                                         }
                                         <p id='streamTitle'>Rent</p>
                                         {
                                             (rentProviders) ? 
                                             rentProviders.map(item => 
                                                 <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
-                                            ) : "There are no Poviders"
+                                            ) : "There are no Providers"
                                         }
                                         <p id='streamTitle'>Buy</p>
                                         {
                                             (buyProviders) ? 
                                             buyProviders.map(item => 
                                                 <img src={`https://image.tmdb.org/t/p/w500${item.logo_path}`} alt="" />
-                                            ) : "There are no Poviders"
+                                            ) : "There are no Providers"
                                         }
                                     </div>
                                 </div>

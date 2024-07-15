@@ -6,3 +6,9 @@ export const favouriteRemoved = "favoriteRemoved"
 
 export const modeToggled = "modeToggled"
 
+export const usericonFetched = "usericonFetched"
+
+export const userLoggedin = "userLoggedin"
+
+export const userLoggedout = "userLoggedout"
+

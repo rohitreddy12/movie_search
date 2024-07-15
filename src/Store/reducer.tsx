@@ -65,10 +65,55 @@ const togglemodeState: State2= {
   return state
 }
 
+interface State3{
+  userIcon:string
+}
+
+const initialusericonState:State3 = {
+  userIcon:''
+}
+const usericonReducer = (state = initialusericonState,action:any) => {
+  if(action.type === 'usericonFetched'){
+    return {
+      ...state,
+      userIcon:action.payload
+    }
+  }
+  return state
+  
+}
+
+interface State4{
+  isLoggedin:boolean
+}
+const initialLoginState:State4 = {
+  isLoggedin: false
+}
+
+const userLoggedinReducer = (state = initialLoginState,action:any) => {
+  switch(action.type){
+    case actionTypes.userLoggedin:
+      return{
+        ...state,
+        isLoggedin: true
+      }
+    case actionTypes.userLoggedout:
+      return{
+        ...state,
+        isLoggedin: false
+      }
+    default:
+      return{
+        ...state
+      }
+  }
+}
 export const rootreducer = combineReducers(
   {
     favourites:favouriteReducer,
-    mode:toggleModeReducer
+    mode:toggleModeReducer,
+    userIcon:usericonReducer,
+    userLogin:userLoggedinReducer
   }
 )
 

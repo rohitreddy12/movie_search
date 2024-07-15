@@ -10,6 +10,7 @@ import Trending from '../Components/trending';
 import FavouriteIcons from '../Components/FavouriteIcons';
 import {getFav} from '../Components/getFavourite';
 import { store } from '../Store/store';
+import { Button } from 'react-bootstrap';
 
 
 
@@ -90,6 +91,7 @@ const MainPage = () => {
     if(query !== null)
       setSearch(query)
     // console.log(process.env.REACT_APP_API_KEY)
+    console.log(store.getState())
   },[])
 
   
@@ -97,8 +99,7 @@ const MainPage = () => {
     setCurrentPage(e)
   }
 
-  // console.log('in mainpage',store.getState())
-
+  
   return (
     <div className='main'>
       <div className="mainimg">
@@ -116,7 +117,9 @@ const MainPage = () => {
       </div>
 
       <div className="trending">
+        
         <Trending />
+        
       </div>
 
       <div className="searchTitle">

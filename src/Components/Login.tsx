@@ -7,6 +7,8 @@ import Modal from 'react-bootstrap/Modal';
 import {FormLabel } from 'react-bootstrap';
 import Alert from 'react-bootstrap/Alert';
 import { MyContext } from '../MyContext';
+import { store } from '../Store/store';
+import {  userLoggedin, usericonFetched } from '../Store/actions';
 
 interface Props {
     show: boolean,
@@ -60,10 +62,18 @@ function Login(props:Props) {
         .then(response => {
             localStorage.setItem('sessionId',response.session_id)
             if(response.success){
-                setIsLoggedIn(true)                
-            }
+                store.dispatch(userLoggedin())                            
+            }     
+        }) 
+        .catch(err => console.log(err))     
+    }
 
-        })      
+    const getuserIcon = () => {
+        setTimeout(() => {
+            fetch(`https://api.themoviedb.org/3/account?api_key=${process.env.REACT_APP_API_KEY}&session_id=${localStorage.getItem('sessionId')}`)
+            .then(response => response.json())
+            .then(data => store.dispatch(usericonFetched(data.username)))
+        }, 1000);    
     }
 
     const requestValidate = () => {
@@ -77,6 +87,7 @@ function Login(props:Props) {
                     setTimeout(() => {
                         props.handleClose();
                     },500)
+                    getuserIcon();
                 }
                 else{
                     setIsValidated(false)

@@ -1,7 +1,19 @@
 .navbar{
     font-family: 'Poppins';
 }
-.d-inline-block align-top{
+/* .d-inline-block align-top{
     width: 30px;
     height: 60px;
+} */
+
+.userIcon{
+    height: 30px;
+    width: 30px;
+    padding: 3px 8px 8px 8px;
+    margin: 0px 10px;
+    color: beige;
+    background-color: black;
+    border-radius: 50%;
+    text-align: center;
+    
 }

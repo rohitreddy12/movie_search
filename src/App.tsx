@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom'
 import Favourites from './Pages/Favourites'
 import Genres from './Pages/Genres'
 import MovieDetails from './Pages/MovieDetails'
-import NavBar from './Components/navbar'
 import MainPage from './Pages/MainPage'
 import { useEffect, useState} from 'react'
 import {MyContext} from './MyContext'
@@ -12,10 +11,13 @@ import { getFav } from './Components/getFavourite'
 import favouritesFetched  from './Store/actions'
 import {store} from './Store/store'
 import { Provider } from 'react-redux'
+import NavBar from './Components/navbar'
 
 function App() {
 
     const [mode, setmode] = useState('')
+
+    const [isLoggedIn,setIsLoggedIn] = useState()
 
     const [style,setStyle] = useState({})
 
@@ -26,7 +28,7 @@ function App() {
       
     const isSessionCreated = () => {
         let sessionId = localStorage.getItem('sessionId')
-        return sessionId !== null ? true : false
+        return sessionId !== null && undefined ? true : false
     }
 
     
@@ -40,10 +42,10 @@ function App() {
     })
 
     
-    console.log('App.tsx is triggered')
+    // console.log('App.tsx is triggered')  
     
     
-    const [isLoggedIn,setIsLoggedIn] = useState(isSessionCreated()) 
+    // const [isLoggedIn,setIsLoggedIn] = useState(isSessionCreated()) 
 
     
 
@@ -69,10 +71,10 @@ function App() {
         
         
         <div>
-            <Provider store={store}>
+            {/* <Provider store={store}> */}
 
             
-            <MyContext.Provider value={{isLoggedIn ,setIsLoggedIn}}>
+            {/* <MyContext.Provider value={{isLoggedIn ,setIsLoggedIn}}> */}
                 <NavBar mode={mode} style={style} />
             <Routes>
                 <Route path='*' element={<NotFoundPage />}></Route>
@@ -81,8 +83,8 @@ function App() {
                 <Route path='/genres' element={<Genres />}></Route>
                 <Route path='/movie_details/:movieId' element={<MovieDetails />}></Route>
             </Routes>
-            </MyContext.Provider>
-            </Provider>
+            {/* </MyContext.Provider> */}
+            {/* </Provider> */}
         </div>
     )
 }
