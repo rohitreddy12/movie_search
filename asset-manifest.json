@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rohitreddy12/movie_search/static/css/main.7a24fda5.css",
+    "main.js": "/rohitreddy12/movie_search/static/js/main.e182d27a.js",
+    "static/media/eaolar2v4vj31.png": "/rohitreddy12/movie_search/static/media/eaolar2v4vj31.82f82e083302a2229139.png",
+    "static/media/Screenshot 2024-05-14 175139.png": "/rohitreddy12/movie_search/static/media/Screenshot 2024-05-14 175139.39043d43330acf5db5e7.png",
+    "index.html": "/rohitreddy12/movie_search/index.html",
+    "main.7a24fda5.css.map": "/rohitreddy12/movie_search/static/css/main.7a24fda5.css.map",
+    "main.e182d27a.js.map": "/rohitreddy12/movie_search/static/js/main.e182d27a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7a24fda5.css",
+    "static/js/main.e182d27a.js"
+  ]
+}
