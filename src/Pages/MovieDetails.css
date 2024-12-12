@@ -1,0 +1,134 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.upperDet{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    justify-content: space-evenly;
+    /* background-image: url("C:\New folder\movie_search\src\Assets\Images\light-yellow-background-pale-yellow-clouds-texture-light-yellow-and-green-background-design.webp"); */
+
+}
+
+
+
+.poster img{
+    width: 350px;
+    height: 400px;
+    min-height: 400px;
+    min-width: 350px;
+    border-radius: 10px;
+    margin: 10px;
+    /* border: 1px solid black */
+}
+
+.upperdetails{
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed yellow;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 10px;
+}
+
+div #title{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    text-align: center;
+    font-size: 35px;
+    margin: 5px 0px;
+    grid-column: 1;
+    justify-self: center;
+
+}
+
+#plot{
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 20px;
+    border-left: 3px solid yellow;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+#plotline{
+    font-family: "Poppins",sans-serif;
+    font-weight: 400;
+    text-indent: 40px;
+    margin-left: 10px;
+}
+
+.castImgs{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin: 10px 0px 10px 10px;
+    gap: 5px;
+    overflow-x: scroll;   
+    text-align: center;
+}
+
+.castImgs img{
+    width: 150px;
+    height: 200px;
+    /* border: 1px solid black; */
+    border-radius: 8px;
+}
+
+p#name{
+    font-weight: 600;
+    position: relative;
+    left: 3px;
+    font-size: medium;text-align: center;
+}
+
+#streamTitle{
+    font-family: 'Poppins';
+    font-weight: 500;
+    padding-left: 10px;
+    margin-bottom: 2px;
+}
+
+.stream img{
+    width: 50px;
+    height: 50px;
+    padding-left: 10px;
+    margin-bottom: 4px;
+} 
+
+#subh{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+} 
+
+
+
+@media screen and (max-width:750px){
+    .upperDet{
+        display: grid;
+        grid-template-rows:auto auto;
+        grid-template-columns: 100%;
+    }
+
+    .upperdetails{
+        margin-top: 10px;
+        row-gap: 12px;
+        justify-self: auto;
+    }
+
+    .poster{
+        justify-self: center;
+    }
+
+    
+}
+
+
+
+
+

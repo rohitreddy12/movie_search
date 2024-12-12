@@ -1,0 +1,74 @@
+div .trendingMovies{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    overflow-x: scroll;
+    padding-left: 30px;
+    /* margin-left: 30px; */
+}
+
+.trendingMain{
+    background-color: #e2e2e2;
+    background-image: url("C:\Users\RohitReddy\Desktop\Projects\React Projects\movie_search\src\Assets\Images\Screenshot 2024-05-14 175139.png");
+    height: fit-content;
+  }
+  
+.trendingUpper{
+    display: flex;
+}
+
+.trendingUpper Button{
+    height: 100%;
+    text-align: center;
+    padding: 1px 15px 1px;
+    border-radius: 20px;
+    border: 0px;
+    background-color: transparent;
+    color: #692910;
+    font-family: "Poppins",sans-serif;
+}
+
+/* .trendingUpper Button:hover{
+    background-color: transparent;
+    color: burlywood;
+} */
+
+
+.switchButtons{
+    background-color: #FCFBE3;
+    height: min-content;
+    margin:25px 0px 0px 10px; 
+    border-radius: 20px;
+    width: max-content;
+    display: flex;
+    justify-content: space-around;
+}
+
+#trendingTag{
+    font-family: "Poppins",sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    /* margin: 5px; */
+    padding-left:30px;
+    padding-top: 20px;
+  
+}
+
+.trendingMovies img{
+    min-width: 150px;
+    min-height: 220px;
+    height: 220px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 4px -1px black;
+    margin-bottom: 3px;
+
+}
+
+.items{
+    margin-bottom: 20px;
+}
+#movieTitle{
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: 500;
+}
