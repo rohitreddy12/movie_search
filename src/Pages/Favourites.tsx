@@ -1,4 +1,3 @@
-
 import { useContext, useEffect, useState } from 'react';
 import './Favourites.css';
 import { Link } from 'react-router-dom';
@@ -42,7 +41,7 @@ function Favourites() {
     
 
     return (
-        <div className='main'>
+        <div className='fav-page'>
             <div id='heading'>Favourited Movies</div>
             <div className="favImgs">
                 {

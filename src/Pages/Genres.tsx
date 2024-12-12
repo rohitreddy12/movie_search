@@ -139,8 +139,7 @@ function Genres() {
                 {
                     genreMoviesList.map((elem) =>
                         <Link to={`/movie_details/${elem.id}`}>
-                            <MovieCard title={elem.title} poster_path={elem.poster_path} key={elem.title}/>
-                           
+                            <MovieCard title={elem.title} poster_path={elem.poster_path} key={elem.title}/>                          
                         </Link>
                     )
                 }

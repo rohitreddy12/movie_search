@@ -1,4 +1,3 @@
-
 import * as actionTypes from "./actionTypes";
 import { Fav } from "../interfaces";
 import { combineReducers } from "redux";

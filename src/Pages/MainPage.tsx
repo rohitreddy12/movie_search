@@ -86,11 +86,9 @@ const MainPage = () => {
   )
 
   useEffect(() => {
-    // fetchFav()
     let query = sessionStorage.getItem('q')
     if(query !== null)
       setSearch(query)
-    // console.log(process.env.REACT_APP_API_KEY)
     console.log(store.getState())
   },[])
 
@@ -116,10 +114,8 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className="trending">
-        
-        <Trending />
-        
+      <div className="trending">       
+        <Trending />    
       </div>
 
       <div className="searchTitle">

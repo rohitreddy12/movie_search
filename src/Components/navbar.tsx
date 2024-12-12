@@ -55,20 +55,20 @@ function NavBar(props:Props) {
 
     const userIcon = useSelector((store:RootState) => store.userIcon.userIcon.charAt(0).toUpperCase())
    
-
+    console.log(store.getState())
     return (
         <>
             <Navbar  bg='warning' sticky='top'  data-bs-theme='light' expand="sm" style={props.style}>
                 <Container fluid>
                     
                         <Navbar.Brand as={Link} to='/'>
-                            <img
+                            {/* <img
                             alt="logo"
                             src="/Logo.jpg"
                             // width="30"
                             // height="30"
                             className="d-inline-block align-top"
-                        />{' '}
+                        />{' '} */}
                             Filmy Lens
                         </Navbar.Brand>
                     
